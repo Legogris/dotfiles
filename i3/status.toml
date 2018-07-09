@@ -1,0 +1,77 @@
+[icons]
+name = "awesome"
+[icons.overrides]
+cpu = ''
+volume_full = ""
+volume_half = ""
+volume_empty = "·"
+volume_muted = ""
+
+[theme]
+name = "solarized-dark"
+[theme.overrides]
+idle_bg = "#333333"
+idle_fg = "#bbbbbb"
+#alternating_tint_bg = "#090909"
+#alternating_tint_fg = "#090909"
+# separator = "|"
+#separator_bg = "#353535"
+#separator_fg = "#000000"
+good_bg = "#333333"
+# good_bg = "#335533"
+good_fg = "#bbffaa"
+warning_bg = "#444433"
+warning_fg = "#ffff99"
+critical_bg = "#773333"
+critical_fg = "#cccccc"
+
+[[block]]
+block = "focused_window"
+max_width = 100
+
+[[block]]
+block = "disk_space"
+path = "/"
+alias = "/"
+info_type = "available"
+unit = "GB"
+interval = 20
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
+[[block]]
+block = "cpu"
+interval = 1
+
+# [[block]]
+# block = "load"
+# interval = 1
+# format = "{1m}"
+
+[[block]]
+block = "xrandr"
+icons = true
+resolution = true
+interval = 2
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "battery"
+interval = 10
+
+[[block]]
+block = "time"
+interval = 1
+format = "%a %F %T"
+
+[[block]]
+block = "custom"
+command = "xkblayout-state print '%s'"
+interval = 1
+
