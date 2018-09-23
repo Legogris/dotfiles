@@ -1,0 +1,31 @@
+Config { bgColor = "#181032"
+     , fgColor = "grey"
+     -- , font = "Kochi:size=20:bold:antialias=true"
+     -- , font = "xft:DejaVu Sans Mono:size=8:bold:antialias=true,FuraMono Regular Powerline"
+     , font = "Tahoma"
+     , position = BottomSize L 100 30
+     , allDesktops = True    -- show on all desktops
+     , textOffset = 20
+     -- , position = TopW L 100
+     -- , position = Static { xpos=0 , ypos=0, width=5001, height=15 }
+     -- , alpha = 10
+     , commands = [Run Com "/home/legogris/config/contrib/getVolume" [] "myVol"  10
+                  , Run MultiCpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+                  , Run Memory ["-t","Mem: <usedratio>%"] 10
+                  , Run DynNetwork ["-L","0","-H","70","--normal","green","--high","red"] 10
+                  , Run DateZone "%a %b %_d %H:%M:%S" "ja_JP.utf-8" "" "date" 10
+                  , Run Kbd []
+                  , Run StdinReader
+                  , Run Battery ["-t", "<left><leftbar><leftvbar><leftipat><watts><acstatus>"] 50
+                  , Run Com "/home/legogris/.config/trayer-padding-icon.sh" [] "trayerpad" 10
+                  ]
+     , sepChar = "%"
+     , alignSep = "}{"
+     , template = " %StdinReader%}{ %battery% | %multicpu% | %memory% | %dynnetwork% | <fc=#ee9a00>%date%</fc> | %kbd%%trayerpad%"
+     , overrideRedirect = False
+     -- , persistent = True
+     --, lowerOnStart = True
+     -- , border = TopB
+     -- , borderColor = "#181032"
+     -- , borderWidth = 1
+     }
