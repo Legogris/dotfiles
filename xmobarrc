@@ -16,7 +16,8 @@ Config { bgColor = "#181032"
                   , Run DateZone "%a %b %_d %H:%M:%S" "ja_JP.utf-8" "" "date" 10
                   , Run Kbd []
                   , Run StdinReader
-                  , Run Battery ["-t", "<left><leftbar><leftvbar><leftipat><watts><acstatus>"] 50
+                  -- , Run Battery [] 50
+                  , Run Battery ["-t", "<leftbar><acstatus>"] 50
                   , Run Com "/home/legogris/.config/trayer-padding-icon.sh" [] "trayerpad" 10
                   ]
      , sepChar = "%"
