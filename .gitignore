@@ -20,3 +20,4 @@ configstore
 libreswan/ipsec.secrets
 dconf/user
 
+*.swp
