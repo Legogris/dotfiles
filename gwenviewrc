@@ -1,0 +1,35 @@
+[MainWindow]
+Height 1080=1080
+Height 1440=1421
+State=AAAA/wAAAAD9AAAAAAAABP4AAAVVAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+Width 1920=1920
+Width 2560=1278
+
+[Recent Files]
+File1[$e]=$HOME/img/2018-06-29-145148_3840x2160_scrot.png
+File10[$e]=$HOME/img/andreapassport.jpeg
+File2[$e]=$HOME/img/2018-07-13-104150_982x63_scrot.png
+File3[$e]=$HOME/img/andrea_id_back.jpg
+File4[$e]=$HOME/img/signature.jpg
+File5[$e]=$HOME/img/rib_icabanken.jpg
+File6[$e]=$HOME/img/proof_of_residence.jpg
+File7[$e]=$HOME/img/andrea_id_back.png
+File8[$e]=$HOME/img/andrea_id_front.jpg
+File9[$e]=$HOME/img/andrea_id_front.png
+Name1[$e]=2018-06-29-145148_3840x2160_scrot.png
+Name10[$e]=andreapassport.jpeg
+Name2[$e]=2018-07-13-104150_982x63_scrot.png
+Name3[$e]=andrea_id_back.jpg
+Name4[$e]=signature.jpg
+Name5[$e]=rib_icabanken.jpg
+Name6[$e]=proof_of_residence.jpg
+Name7[$e]=andrea_id_back.png
+Name8[$e]=andrea_id_front.jpg
+Name9[$e]=andrea_id_front.png
+
+[SideBar-BrowseMode]
+IsVisible=true
+
+[SideBar-ViewMode]
+IsVisible=true
