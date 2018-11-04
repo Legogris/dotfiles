@@ -12,6 +12,7 @@ in
 {
   imports =
     [ # Include the results of the hardware scan.
+      /home/legogris/.config/nixos/glibc.nix
       /etc/nixos/hardware-configuration.nix
     ];
 
@@ -38,6 +39,7 @@ in
         enable = true;
         # enableStrongSwan = true;
       };
+      extraHosts = "172.31.56.56 opscenter.challenger-deep.com";
       # Open ports in the firewall.
       # firewall.allowedTCPPorts = [ ... ];
       # firewall.allowedUDPPorts = [ ... ];
@@ -50,6 +52,7 @@ in
      consoleFont = "Lat2-Terminus24";
      consoleKeyMap = "us";
      defaultLocale = "en_DK.UTF-8";
+     supportedLocales = ["en_DK.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" "ja_JP.UTF-8/UTF-8"];
   };
 
   fonts = {
@@ -62,6 +65,10 @@ in
       powerline-fonts
       ubuntu_font_family
       terminus_font
+      terminus_font_ttf
+      migu
+      font-awesome_5
+      nerdfonts
     ];
   };
 
@@ -85,14 +92,21 @@ in
     };
   };
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; let my-python-packages = python-packages: with python-packages; [
+    pandas
+    requests
+    pyopenssl
+    ]; python-with-my-packages = python27.withPackages my-python-packages;
+    in
+    [
     lm_sensors
     inetutils
     exfat
     sshfsFuse
     strongswan
     nix-repl
-    terminus_font terminus_font_ttf material-icons font-awesome_5
+    terminus_font terminus_font_ttf material-icons font-awesome_5 nerdfonts
+    # gnome3.adwaita-icon-theme
 
     # Libs
     libnl # maybe need for freeswan vpn? not sure
@@ -106,7 +120,7 @@ in
 
     # Cli
     zsh oh-my-zsh nix-zsh-completions lambda-mod-zsh-theme
-    vimHugeX htop iotop jq lsof man_db psmisc tmux tree which file ncdu
+    vimHugeX htop iotop jq lsof man_db psmisc tmux tree which file ncdu bc
     wget curl
     zip unzip unrar
     nmap
@@ -122,6 +136,7 @@ in
     python27Full python3
     #python34Packages.pip
     #python27Packages.pip
+    #python27Packages.requests
     nodePackages.node2nix
     nodejs-8_x
     pass
@@ -133,9 +148,17 @@ in
     lxappearance-gtk3 nixos-icons xfce.xfce4-icon-theme
     gnome3.gtk glib gnome3.dconf gsettings-desktop-schemas
     deepin.deepin-gtk-theme deepin.deepin-icon-theme
+    gtk_engines gtk-engine-murrine
     scrot 
-    i3 wpa_supplicant_gui feh xorg.xbacklight i3status-rust dunst slim
+    wpa_supplicant_gui feh xorg.xbacklight dunst slim
+    i3 i3status-rust 
+    haskellPackages.xmobar
+    taffybar
+    dmenu
     rxvt_unicode-with-plugins 
+    lxmenu-data
+    pcmanfm
+    libu2f-host libu2f-server pam_u2f
 
     # X applications
     networkmanagerapplet
@@ -150,15 +173,27 @@ in
     vlc
     evince
     transmission_gtk
-    skype
     spotify
     unstable.slack
     unstable.vscode
     unstable.gitkraken
-    dotnet-sdk
+    unstable.dotnet-sdk
   ];
 
+  environment.sessionVariables = {
+    # XCURSOR_PATH already defined in `/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs/nixos/modules/config/shells-environment.nix
+    #XCURSOR_PATH = [
+    #   "${config.system.path}/share/icons"
+    #   "$HOME/.icons"
+    ##   "$HOME/.nix-profile/share/icons/"
+    # ];
+    GTK_DATA_PREFIX = [
+      "${config.system.path}"
+    ];
+  };
   services = {
+    keybase.enable = true;
+    kbfs.enable = true;
     xserver = {
       serverFlagsSection = ''
         Option "DontZap" "true"
@@ -166,8 +201,19 @@ in
       enable = true;
       layout = "us";
       xkbOptions = "eurosign:e";
+      xkbVariant = "altgr-intl";
       dpi = 120;
-      windowManager.i3.enable = true;
+      # windowManager.i3.enable = true;
+      windowManager.xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+        extraPackages = haskellPackages: [
+          haskellPackages.xmonad
+          haskellPackages.xmonad-contrib
+          haskellPackages.xmonad-extras
+        ];
+      };
+      windowManager.default = "xmonad";
       displayManager = {
         slim.enable = true;
         slim.defaultUser = "legogris";
@@ -189,13 +235,21 @@ in
           authby = "secret";
           auto = "route";
         };
-        kaikoEuWest3 = {
-          right = "52.47.92.213";
+        kaikoAWS = {
+         # right = "52.47.92.213"; # eu-west-3
+          right = "34.226.183.135"; # us-east-1
           rightsubnet = "172.31.0.0/16";
           leftsourceip = "%config";
           rightid = "vpn@kaiko.aws";
           leftid = "robert@kaiko.aws";
         };
+         # kaikoUsEast1 = {
+         #    right = "34.226.183.135";
+         #    rightsubnet = "172.31.0.0/16";
+         #    leftsourceip = "%config";
+         #    rightid = "vpn@kaiko.aws";
+         #    leftid = "robert@kaiko.aws";
+         # };
       };
     };
     #libreswan = {
@@ -261,9 +315,9 @@ in
         # { keys = [ 133 46 ]; events = [ "key" ]; attributes = [ "grabbed" ]; command = "slock"; }
       ];
     };
-    openvpn.servers = {
-      kaikoVPN  = { config = '' config /home/legogris/.config/openvpn/kaiko-us-east-1.ovpn ''; };
-    };
+    # openvpn.servers = {
+    #   kaikoVPN  = { config = '' config /home/legogris/.config/openvpn/kaiko-us-east-1.ovpn ''; };
+    # };
   };
   virtualisation.docker.enable = true;
 
@@ -293,6 +347,12 @@ plugins=(git man)
 export EDITOR='vim'
 alias tmux='tmux -2'
 alias ll='ls -lahF'
+tsm () {
+  date -Ins -u -d @$(  echo "($1 + 500) / 1000" | bc) | sed -E 's/[0-9]{6}\+/\+/' | sed 's/,/./'
+}
+tss () {
+  date -Is -u -d @$1
+}
 #alias bell='echo -e "\a"'
 HISTFILE=~/.histfile
 HISTSIZE=10000
@@ -302,6 +362,7 @@ setopt incappendhistory autocd extendedglob sharehistory extendedhistory HIST_RE
 unsetopt beep nomatch notify
 source $ZSH/oh-my-zsh.sh
 source ~/.config/zsh.prompt
+
 [[ -z "$TMUX" ]] && exec tmux -2
 '';
     };
