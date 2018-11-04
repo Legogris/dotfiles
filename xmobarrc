@@ -1,32 +1,57 @@
 Config { bgColor = "#181032"
      , fgColor = "grey"
-     -- , font = "Kochi:size=20:bold:antialias=true"
-     -- , font = "xft:DejaVu Sans Mono:size=8:bold:antialias=true,FuraMono Regular Powerline"
-     , font = "Tahoma"
+     , font = "xft:Noto Mono for Powerline:size=8:antialias=true,Migu 1C:size=8:antialias=true,Font Awesome 5 Free Solid:size=8"
+     , additionalFonts = ["xft:Noto Mono for Powerline:size=8:antialias=true,Migu 1C:size=10:antialias=true"
+       ]
      , position = BottomSize L 100 30
      , allDesktops = True    -- show on all desktops
-     , textOffset = 20
-     -- , position = TopW L 100
-     -- , position = Static { xpos=0 , ypos=0, width=5001, height=15 }
-     -- , alpha = 10
+     , textOffset = 21
      , commands = [Run Com "/home/legogris/config/contrib/getVolume" [] "myVol"  10
-                  , Run MultiCpu ["-L","3","-H","50","--normal","green","--high","red"] 10
-                  , Run Memory ["-t","Mem: <usedratio>%"] 10
-                  , Run DynNetwork ["-L","0","-H","70","--normal","green","--high","red"] 10
-                  , Run DateZone "%a %b %_d %H:%M:%S" "ja_JP.utf-8" "" "date" 10
+                  , Run MultiCpu [ "-t", "\xf3fd <total>%"
+                                 , "-L", "3"
+                                 , "-H","50"
+                                 , "--normal","green"
+                                 , "--high","red"
+                                 ] 10
+                  , Run Memory ["-t","\xf2db <usedratio>%"] 10
+                  , Run DiskU [("/", "\xf0a0 <free>"), ("sdb1", "<usedbar>")]
+                              ["-L", "20", "-H", "50", "-m", "1", "-p", "3"]
+                              20
+                  , Run DynNetwork [ "-t", "\xf362 <dev>: <rx> <tx>"
+                                    , "-S", "true"
+                                    , "-L", "0"
+                                    , "-H", "200"
+                                    , "--normal", "gray"
+                                    , "--high", "gray"
+                                    ] 10
+                  , Run Wireless "wlp61s0" [ "-t", "\xf1eb <essid>"] 100
+                  , Run DateZone "%a %b%d日 %H:%M:%S" "ja_JP.utf-8" "" "date" 2
                   , Run Kbd []
                   , Run StdinReader
-                  -- , Run Battery [] 50
-                  , Run Battery ["-t", "<leftbar><acstatus>"] 50
+                  , Run Battery [ "--template" , "<acstatus>"
+                          , "--Low"      , "10"       -- units: %
+                          , "--High"     , "50"       -- units: %
+                          , "--low"      , "darkred"
+                          , "--normal"   , "darkorange"
+                          , "--"
+                          , "-o"	, "<leftipat>  <left>% <timeleft>"
+                          , "-O"	, "<leftipat>  <left>% <timeleft>"
+                          , "-i"	, "<leftipat>  <left>% <timeleft>"
+                          , "--off-icon-pattern", "\xf240"
+                          , "--on-icon-pattern", "\xf0e7"
+                          , "--idle-icon-pattern", "\xf0e7"
+                  ] 50
+                  , Run Volume "default" "Master" [ "-t", "<status> <volume>%"
+                                                  , "--"
+                                                  , "-o", "\xf026"
+                                                  , "-O", "\xf028"
+                                                  , "-C", "gray"
+                                                  , "-c", "#666666"
+                                                  ] 10
                   , Run Com "/home/legogris/.config/trayer-padding-icon.sh" [] "trayerpad" 10
                   ]
      , sepChar = "%"
      , alignSep = "}{"
-     , template = " %StdinReader%}{ %battery% | %multicpu% | %memory% | %dynnetwork% | <fc=#ee9a00>%date%</fc> | %kbd%%trayerpad%"
+     , template = " <fn=1>%StdinReader%</fn>}{ %dynnetwork% <fn=1>│</fn> %wlp61s0wi% <fn=1>│</fn> %multicpu% <fn=1>│</fn> %memory% <fn=1>│</fn> %disku% <fn=1>│</fn> %default:Master% <fn=1>│</fn> %battery% <fn=1>│</fn> <fc=#ee9a00>%date%</fc> <fn=1>│</fn>%trayerpad%"
      , overrideRedirect = False
-     -- , persistent = True
-     --, lowerOnStart = True
-     -- , border = TopB
-     -- , borderColor = "#181032"
-     -- , borderWidth = 1
      }

@@ -163,9 +163,9 @@ myManageHook = composeAll
 -- myBar = "xmobar -x 0"
 myBar = "xmobar -d ~/.config/xmobarrc"
 
-myPPLayout "Tall" = "T"
-myPPLayout "Mirror Tall" = "MT"
-myPPLayout "Full" = "F"
+myPPLayout "Tall" = "高"
+myPPLayout "Mirror Tall" = "広"
+myPPLayout "Full" = "全"
 myPPLayout s = s
 -- Hide NSP (scratchpad)
 myPPHidden "NSP" = ""

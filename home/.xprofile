@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+xrandr --output eDP1 --auto --output HDMI2 --pos 0x0 --right-of eDP1 --mode 3840x2160
+(feh --bg-fill ~/.config/wallpapers/lunar_by_t1na-dc3y9cs.jpg ~/.config/wallpapers/eternal_by_t1na-dbrd7rc.jpg ~/.config/wallpapers/free__by_t1na-dc2d5c2.jpg &)
+nm-applet &
+(sleep 2 && trayer --edge bottom --align right --widthtype request --height 24 --transparent true --alpha 0 --tint 0xff181032 --padding 6 --iconspacing 4 &)

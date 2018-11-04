@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.npm-global/bin::$HOME/.gem/ruby/2.5.0/bin:$HOME/bin:/usr/local/bin:$PATH
 export PATH="$PATH:$HOME/.rvm/bin:$HOME/.rvm/scripts/rvm"
+export GOPATH=$HOME/dev/golang
 
 export ANSIBLE_INVENTORY=/home/legogris/dev/kaiko/devops/ansible/ec2.py
 export EC2_INI_PATH=/home/legogris/dev/kaiko/devops/ansible/ec2.ini
