@@ -14,3 +14,6 @@ if [ -f '/home/legogris/dev/google-cloud-sdk/path.zsh.inc' ]; then source '/home
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/legogris/dev/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/legogris/dev/google-cloud-sdk/completion.zsh.inc'; fi
+
+# added by travis gem
+[ -f /home/legogris/.travis/travis.sh ] && source /home/legogris/.travis/travis.sh
