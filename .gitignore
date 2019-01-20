@@ -1,11 +1,15 @@
-Code
-Code/Cache
-Code/CachedData
+Code/*
 !Code/User/*
 Code/User/workspaceStorage
+Signal
 Slack
 GitKraken
 BraveSoftware
+gcloud
+Postman
+pgadmin
+libreoffice
+liferea
 
 
 chromium
@@ -16,6 +20,7 @@ filezilla
 pulse
 openvpn
 keybase
+Keybase
 borg/keys
 IJHack
 keepassxc
@@ -24,3 +29,7 @@ libreswan/ipsec.secrets
 dconf/user
 
 *.swp
+wireguard
+pavucontrol*
+QtProject.conf
+
