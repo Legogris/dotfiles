@@ -1,0 +1,20 @@
+{
+
+  "editor.fontSize": 12,
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "boundary",
+  "editor.mouseWheelZoom": true,
+  "vim.history": 100,
+  "vim.statusBarColorControl": true,
+  "vim.useSystemClipboard": true,
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#005f5f",
+    "statusBar.noFolderBackground": "#005f5f",
+    "statusBar.debuggingBackground": "#005f5f"
+  },
+  "window.zoomLevel": 0,
+  "[terraform]": {
+    "editor.tabSize": 4
+  },
+  "omnisharp.useGlobalMono": "always"
+}
