@@ -36,10 +36,14 @@ in
   networking = {
       hostName = "strength"; # Define your hostname.
       networkmanager = {
+        unmanaged = [ "docker0"  "wg0" ];
         enable = true;
         # enableStrongSwan = true;
       };
-      extraHosts = "172.31.56.56 opscenter.challenger-deep.com";
+      extraHosts = ''
+        127.0.0.1 localdev.kaiko.com localdev.kaiko.io";
+        104.18.47.101 v4.ifconfig.co
+      '';
       # Open ports in the firewall.
       # firewall.allowedTCPPorts = [ ... ];
       # firewall.allowedUDPPorts = [ ... ];
@@ -99,11 +103,14 @@ in
     ]; python-with-my-packages = python27.withPackages my-python-packages;
     in
     [
+    linuxHeaders
     lm_sensors
     inetutils
     exfat
     sshfsFuse
     strongswan
+    wireguard
+    #unstable.wireguard-tools
     nix-repl
     terminus_font terminus_font_ttf material-icons font-awesome_5 nerdfonts
     # gnome3.adwaita-icon-theme
@@ -122,7 +129,7 @@ in
     zsh oh-my-zsh nix-zsh-completions lambda-mod-zsh-theme
     vimHugeX htop iotop jq lsof man_db psmisc tmux tree which file ncdu bc
     wget curl
-    zip unzip unrar
+    zip unzip unrar zstd
     nmap
     gnupg
 
@@ -138,8 +145,8 @@ in
     #python27Packages.pip
     #python27Packages.requests
     nodePackages.node2nix
-    nodejs-8_x
-    pass
+    unstable.nodejs-10_x
+    pass pass-otp gopass
     android-udev-rules
 
     # X11 / GTK / QT / desktop stuff
@@ -195,6 +202,9 @@ in
     keybase.enable = true;
     kbfs.enable = true;
     xserver = {
+      screenSection = ''
+        Option "DPI" "192 x 192"
+      '';
       serverFlagsSection = ''
         Option "DontZap" "true"
       '';
@@ -381,6 +391,7 @@ source ~/.config/zsh.prompt
     mediaKeys.enable = true;
   };
   hardware = {
+    u2f.enable = true;
     pulseaudio = {
       enable = true;
       package = pkgs.pulseaudioFull;
