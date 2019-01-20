@@ -30,6 +30,9 @@ dconf/user
 
 *.swp
 wireguard
-pavucontrol*
+pavucontrol.ini
 QtProject.conf
-
+gwenviewrc
+libfm/*
+pcmanfm/*
+redisdesktop/*
