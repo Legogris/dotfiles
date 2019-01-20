@@ -161,7 +161,7 @@ myManageHook = composeAll
 
 
 -- myBar = "xmobar -x 0"
-myBar = "xmobar -d ~/.config/xmobarrc"
+myBar = "/home/legogris/.local/bin/xmobar -d ~/.config/xmobarrc"
 
 myPPLayout "Tall" = "高"
 myPPLayout "Mirror Tall" = "広"
