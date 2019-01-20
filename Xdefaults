@@ -1,0 +1,55 @@
+*Xft*dpi: 120
+*Xft*antialias: true
+*Xft*rgba: rgb
+*Xft*hinting: true
+*Xft*hintstyle: hintslight
+
+*URxvt*urgentOnBell: true
+
+*URxvt*depth: 32
+*URxvt*termName: rxvt-256color
+URxvt*perl-lib: /etc/nixos/conf/urxvt-perl
+*URxvt*perl-ext-common: default,clipboard,font-size,url-select,vtwheel,keyboard-select,selection-autotransform
+*URxvt*selection-autotransform.0: s| +$||gm
+*URxvt*iso14755: false
+*URxvt*iso14755_52: false
+*URxvt*scrollBar: false
+*URxvt*background: #000000
+*URxvt*foreground: #ffffff
+*URxvt*font: xft:Terminess Powerline:size=12
+
+*URxvt*transparent: true
+*URxvt*cursorBlink: true
+*URxvt*buffered: true
+*URxvt*internalBorder: 0
+*URxvt*externalBorder: 0
+! *URxvt*borderLess: true
+! *URxvt*tintColor: #000000
+*URxvt*shading: 20
+*URxvt*saveLines: 1000000
+*URxvt*url-select.launcher:   /run/current-system/sw/bin/firefox -new-tab
+*URxvt*url-select.underline: true
+*URxvt*iso-14755: false
+
+URxvt.keysym.C-S-C: perl:clipboard:copy
+URxvt.keysym.C-S-V: perl:clipboard:paste
+URxvt*keysym.C-A-V: perl:clipboard:paste_escaped
+*URxvt*keysym.A-0xff1b: perl:urxvi
+*URxvt*keysym.C-Up:     perl:font-size:increase
+*URxvt*keysym.C-Down:   perl:font-size:decrease
+*URxvt*keysym.C-S-Up:   perl:font-size:incglobal
+*URxvt*keysym.C-S-Down: perl:font-size:decglobal
+*URxvt*keysym.C-u:      perl:url-select:select_next
+*URxvt*keysym.M-Escape: perl:keyboard-select:active
+*URxvt*keysym.M-s:      perl:keyboard-select:search
+
+
+! #include "/home/legogris/config/colors/euphrasia"
+#include "/home/legogris/.config/colours/euphrasia2"
+
+! http://www.netswarm.net/misc/urxvt-xtermcompat.txt
+*URxvt*keysym.S-Up:   \033[1;2A
+*URxvt*keysym.S-Down:   \033[1;2B
+*URxvt*keysym.S-Right:    \033[1;2C
+*URxvt*keysym.S-Left:   \033[1;2D
+
