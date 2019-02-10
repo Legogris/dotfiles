@@ -24,7 +24,7 @@ modm = mod1Mask
 
 legoKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((mod4Mask, xK_t), spawn myTerminal)
-    , ((mod4Mask, xK_r), spawn "dmenu_run")
+    , ((mod4Mask, xK_r), spawn "rofi -show combi")
     , ((mod4Mask, xK_p), spawn "passmenu")
     , ((mod4Mask, xK_i), spawn "urxvt -name urxvtq -e sudo wifi-menu")
     , ((mod4Mask, xK_b), spawn "urxvt -name urxvtq -e bluetoothctl")
