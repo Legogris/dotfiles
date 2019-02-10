@@ -1,5 +1,12 @@
 [user]
-	email = robert.edstrom@gmail.com
-	name = Robert Edström
+  email = github@legogris.se
+  name = Robert Edström
 [pull]
-	rebase = true
+  rebase = true
+[rebase]
+  autostash = true
+[alias]
+  co = !git checkout
+  tree = !git log --graph --decorate --oneline
+  st = !git status
+
