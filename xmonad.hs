@@ -13,6 +13,7 @@ import XMonad.Actions.NoBorders
 import XMonad.Util.WorkspaceCompare
 import XMonad.Actions.SpawnOn
 import XMonad.Actions.CycleWS
+import XMonad.Hooks.EwmhDesktops
 
 import XMonad.Hooks.SetWMName
 import qualified XMonad.StackSet as W
@@ -143,7 +144,8 @@ myLayout = smartBorders $ avoidStruts $ tiled ||| Mirror tiled ||| noBorders Ful
 main = do
   -- trayerproc <- spawnPipe "trayer --edge top --align right --widthtype pixel --width 150 --expand true --SetDockType true --SetPartialStrut true --height 16 --tint 0xFF181032 --alpha 127 --transparent true --monitor 2"
   -- xmonad =<< statusBar myPP toggleStrutsKey myConfig
-  xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
+  config <- statusBar myBar myPP toggleStrutsKey (ewmh myConfig)
+  xmonad config
 
 myTerminal = "urxvt"
 -- myManageHook = (manageSpawn <+> manageDocks <+> manageHook def) <+> manageScratchPad
