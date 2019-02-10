@@ -8,7 +8,6 @@
 
 *URxvt*depth: 32
 *URxvt*termName: rxvt-256color
-URxvt*perl-lib: /etc/nixos/conf/urxvt-perl
 *URxvt*perl-ext-common: default,clipboard,font-size,url-select,vtwheel,keyboard-select,selection-autotransform
 *URxvt*selection-autotransform.0: s| +$||gm
 *URxvt*iso14755: false
@@ -27,7 +26,6 @@ URxvt*perl-lib: /etc/nixos/conf/urxvt-perl
 ! *URxvt*tintColor: #000000
 *URxvt*shading: 20
 *URxvt*saveLines: 1000000
-*URxvt*url-select.launcher:   /run/current-system/sw/bin/firefox -new-tab
 *URxvt*url-select.underline: true
 *URxvt*iso-14755: false
 
